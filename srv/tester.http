@@ -1,0 +1,82 @@
+###Get Service Document
+http://localhost:4004/odata/v4/catalogservice
+
+###Get Service Metadata Document
+http://localhost:4004/odata/v4/catalogservice/$metadata
+
+###Get All Employee data
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet
+
+###Get Single Employee data
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+
+###Get Single Employee data
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet?$top=4&skip=2
+
+###Reduce the volume of data - selected columns
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet?select=ID,nameFirst,email
+
+###Count of Records
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet/$count
+
+###Create a new record - called as POST Call
+POST http://localhost:4004/odata/v4/catalogservice/EmployeeSet
+Content-Type: application/json
+
+{
+  "nameFirst": "ABC",
+  "nameMiddle": null,
+  "nameLast": "DEF",
+  "nameInitials": null,
+  "sex": "F",
+  "language": "E",
+  "phoneNumber": "+1 224 374 524",
+  "email": "abd.def@test.com",
+  "loginName": "SPRINGS",
+  "Currency_code": "USD",
+  "salaryAmount": 55549,
+  "accountNumber": "111222333",
+  "bankId": "51000",
+  "bankName": "My Bank of Antioch"
+}
+
+###Get Single Employee data
+http://localhost:4004/odata/v4/catalogservice/EmployeeSet/
+
+###Change the Data - Patch
+###Read The Employee
+PATCH http://localhost:4004/odata/v4/catalogservice/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "salaryAmount":"101234"
+}
+
+###Remove the data from DB
+DELETE http://localhost:4004/odata/v4/catalogservice/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197A7FB
+
+###Get AllPO data
+http://localhost:4004/odata/v4/catalogservice/POs
+
+###Get AllPO Line data
+http://localhost:4004/odata/v4/catalogservice/POs/74867AD200E41EDBA5D8B0C98DC28052?$expand=Items
+
+###Test the boost action
+POST http://localhost:4004/odata/v4/catalogservice/POs/74867AD200E41EDBA5D8B0C98DC28052/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Execute the Function 
+http://localhost:4004/odata/v4/CatalogService/getLargestOrder()
+
+###Testing the Generic Services
+PATCH http://localhost:4004/odata/v4/catalogservice/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "salaryAmount":"1012341"
+}
+
+###Read custom entity for emplouyee
+ http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
